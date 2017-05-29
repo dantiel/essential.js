@@ -218,8 +218,7 @@ groupBy = λ (f, xs) ->
   ,{}
 
 countBy = sequence groupBy, forOwn {}, (acc, k, v) ->
-  acc[k] = v.length
-  acc
+  extend {}, acc, toObject [k, v.length]
 
 format = λ (xs, x) ->
   x.replace /%(\d+)/g, (_, i) -> xs[--i] or ''
